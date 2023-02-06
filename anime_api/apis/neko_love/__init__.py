@@ -26,7 +26,7 @@ class NekoLoveAPI:
         Returns a random image in the specific category
         """
 
-        reponse = requests.get(self.endpoint + "/" + category.value)
+        reponse = requests.get(f"{self.endpoint}/{category.value}")
 
         if reponse.status_code != 200:
             raise exceptions.ServerError(

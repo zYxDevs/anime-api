@@ -23,7 +23,7 @@ class HmtaiAPI:
         Returns a random image with in the specified category.
         """
 
-        response = requests.get(self.endpoint + "/" + category.value)
+        response = requests.get(f"{self.endpoint}/{category.value}")
 
         if response.status_code != 200:
             raise exceptions.ServerError(status_code=response.status_code)
