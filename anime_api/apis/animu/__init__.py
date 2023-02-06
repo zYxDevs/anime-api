@@ -36,7 +36,7 @@ class AnimuAPI:
         """
 
         response = requests.get(
-            self.endpoint + "/" + category.value, headers={"Auth": self.api_token}
+            f"{self.endpoint}/{category.value}", headers={"Auth": self.api_token}
         )
 
         if response.status_code != 200:
@@ -50,7 +50,7 @@ class AnimuAPI:
         """
 
         response = requests.get(
-            self.endpoint + "/quote", headers={"Auth": self.api_token}
+            f"{self.endpoint}/quote", headers={"Auth": self.api_token}
         )
 
         if response.status_code != 200:
@@ -69,7 +69,7 @@ class AnimuAPI:
         """
 
         response = requests.get(
-            self.endpoint + "/waifu", headers={"Auth": self.api_token}
+            f"{self.endpoint}/waifu", headers={"Auth": self.api_token}
         )
 
         if response.status_code != 200:
@@ -118,7 +118,7 @@ class AnimuAPI:
             params["maxLength"] = max_length
 
         response = requests.get(
-            self.endpoint + "/fact",
+            f"{self.endpoint}/fact",
             params=params,
             headers={"Auth": self.api_token},
         )
@@ -138,7 +138,7 @@ class AnimuAPI:
         """
 
         response = requests.get(
-            self.endpoint + "/password", headers={"Auth": self.api_token}
+            f"{self.endpoint}/password", headers={"Auth": self.api_token}
         )
 
         if response.status_code != 200:

@@ -87,18 +87,16 @@ class TraceMoeAPI:
                 )
 
             response = requests.post(
-                self.endpoint + "/search",
+                f"{self.endpoint}/search",
                 params=params,
                 headers=headers,
                 files={"file": file.file},
             )
 
         elif file.get_file_type() == "url":
-            params.update({"url": file.url})
+            params["url"] = file.url
             response = requests.post(
-                self.endpoint + "/search",
-                headers=headers,
-                params=params,
+                f"{self.endpoint}/search", headers=headers, params=params
             )
 
         if response.status_code == 413:
