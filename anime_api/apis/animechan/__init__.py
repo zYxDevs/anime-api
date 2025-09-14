@@ -30,15 +30,17 @@ class AnimechanAPI:
         Get a random quote from the API.
         """
         response = requests.get(
-            f"{self.endpoint}/random"
-            + (
-                "/character?name=" + quote_plus(character_name)
-                if character_name
-                else "/anime?title=" + quote_plus(anime_title)
-                if anime_title
-                else ""
+            (
+                f"{self.endpoint}/random"
+                + (
+                    f"/character?name={quote_plus(character_name)}"
+                    if character_name
+                    else f"/anime?title={quote_plus(anime_title)}"
+                    if anime_title
+                    else ""
+                )
             ),
-            timeout=5
+            timeout=5,
         )
 
         AnimechanAPI._check_response_code(response.status_code)

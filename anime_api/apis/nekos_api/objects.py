@@ -90,26 +90,28 @@ class Image:
     expires: datetime
     dimens: _Dimens
 
-    def from_json(data: dict) -> 'Image':
+    def from_json(self) -> 'Image':
         return Image(
-            id=data["id"],
-            url=data["url"],
-            artist=Artist(**data["artist"]) if data["artist"] else None,
-            source=_Source(**data["source"]) if data["source"] else None,
-            original=data["original"],
-            nsfw=NsfwLevel(data["nsfw"]),
+            id=self["id"],
+            url=self["url"],
+            artist=Artist(**self["artist"]) if self["artist"] else None,
+            source=_Source(**self["source"]) if self["source"] else None,
+            original=self["original"],
+            nsfw=NsfwLevel(self["nsfw"]),
             categories=[Category(**to_snake(c)) for c in data["categories"]],
             characters=[Character(**to_snake(c)) for c in data["characters"]],
-            created_at=parser.parse(data["createdAt"]),
-            etag=data["meta"]["eTag"],
-            size=data["meta"]["size"],
-            mimetype=data["meta"]["mimetype"],
-            color=data["meta"]["color"],
-            expires=parser.parse(data["meta"]["expires"]),
+            created_at=parser.parse(self["createdAt"]),
+            etag=self["meta"]["eTag"],
+            size=self["meta"]["size"],
+            mimetype=self["meta"]["mimetype"],
+            color=self["meta"]["color"],
+            expires=parser.parse(self["meta"]["expires"]),
             dimens=_Dimens(
-                height=data["meta"]["dimens"]["height"],
-                width=data["meta"]["dimens"]["width"],
-                aspect_ratio=data["meta"]["dimens"]["height"],
-                orientation=ImageOrientation(data["meta"]["dimens"]["orientation"]),
+                height=self["meta"]["dimens"]["height"],
+                width=self["meta"]["dimens"]["width"],
+                aspect_ratio=self["meta"]["dimens"]["height"],
+                orientation=ImageOrientation(
+                    self["meta"]["dimens"]["orientation"]
+                ),
             ),
         )

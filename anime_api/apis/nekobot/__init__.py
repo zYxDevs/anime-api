@@ -28,10 +28,8 @@ class NekoBotAPI:
         Generates an image from the given image type
         """
 
-        params = {"type": image_type.value}
-        params.update(kwargs)
-
-        response = requests.get(self.endpoint + "/imagegen", params=params)
+        params = {"type": image_type.value} | kwargs
+        response = requests.get(f"{self.endpoint}/imagegen", params=params)
 
         if (
             response.status_code != 200
@@ -60,7 +58,7 @@ class NekoBotAPI:
             )
 
         response = requests.get(
-            self.endpoint + "/image", params={"type": category.value}
+            f"{self.endpoint}/image", params={"type": category.value}
         )
 
         if (

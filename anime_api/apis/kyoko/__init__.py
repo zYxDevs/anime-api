@@ -19,7 +19,7 @@ class KyokoAPI:
         """
         Get a random quote from the API.
         """
-        response = requests.get(self.endpoint + "/quotes")
+        response = requests.get(f"{self.endpoint}/quotes")
         if response.status_code != 200:
             raise exceptions.ServerError(status_code=response.status_code)
         return Quote(
@@ -33,7 +33,7 @@ class KyokoAPI:
         """
         Get a random slap image from the API.
         """
-        response = requests.get(self.endpoint + "/slap")
+        response = requests.get(f"{self.endpoint}/slap")
         if response.status_code != 200:
             raise exceptions.ServerError(status_code=response.status_code)
         return Image(url=response.json()["url"])
@@ -42,7 +42,7 @@ class KyokoAPI:
         """
         Get a random kiss image from the API.
         """
-        response = requests.get(self.endpoint + "/kiss")
+        response = requests.get(f"{self.endpoint}/kiss")
         if response.status_code != 200:
             raise exceptions.ServerError(status_code=response.status_code)
         return Image(url=response.json()["url"])
@@ -51,7 +51,7 @@ class KyokoAPI:
         """
         Get a random hug image from the API.
         """
-        response = requests.get(self.endpoint + "/hug")
+        response = requests.get(f"{self.endpoint}/hug")
         if response.status_code != 200:
             raise exceptions.ServerError(status_code=response.status_code)
         return Image(url=response.json()["url"])

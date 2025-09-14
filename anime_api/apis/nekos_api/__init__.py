@@ -77,11 +77,11 @@ class NekosAPI:
         if not self.token:
             raise ValueError("You need a valid access token to use this method.")
 
-        headers = {"Authorization": "Bearer " + self.token}
+        headers = {"Authorization": f"Bearer {self.token}"}
         params = {"limit": limit, "offset": offset}
 
         response = requests.get(
-            self.endpoint + "/image", headers=headers, params=params
+            f"{self.endpoint}/image", headers=headers, params=params
         )
 
         NekosAPI._check_response_code(response)
@@ -100,7 +100,7 @@ class NekosAPI:
         """
         params = {"categories": ",".join(categories)} if categories else {}
 
-        response = requests.get(self.endpoint + "/image/random", params=params)
+        response = requests.get(f"{self.endpoint}/image/random", params=params)
 
         NekosAPI._check_response_code(response)
 
@@ -119,7 +119,7 @@ class NekosAPI:
         params = {"limit": count}
         params.update({"categories": ",".join(categories)}) if categories else None
 
-        response = requests.get(self.endpoint + "/image/random", params=params)
+        response = requests.get(f"{self.endpoint}/image/random", params=params)
 
         NekosAPI._check_response_code(response)
 
@@ -132,7 +132,7 @@ class NekosAPI:
         """
         Returns an image by its ID
         """
-        response = requests.get(self.endpoint + "/image/" + quote(image_id))
+        response = requests.get(f"{self.endpoint}/image/{quote(image_id)}")
 
         NekosAPI._check_response_code(response)
 
@@ -153,9 +153,9 @@ class NekosAPI:
         params = {"limit": limit, "offset": offset}
 
         if search:
-            params.update({"search": str(search)})
+            params["search"] = str(search)
 
-        response = requests.get(self.endpoint + "/artist", params=params)
+        response = requests.get(f"{self.endpoint}/artist", params=params)
 
         NekosAPI._check_response_code(response)
 
@@ -168,7 +168,7 @@ class NekosAPI:
         """
         Returns an artist by its ID
         """
-        response = requests.get(self.endpoint + "/artist/" + quote(artist_id))
+        response = requests.get(f"{self.endpoint}/artist/{quote(artist_id)}")
 
         NekosAPI._check_response_code(response)
 
@@ -184,7 +184,7 @@ class NekosAPI:
         Returns all artist's images.
         """
         response = requests.get(
-            self.endpoint + "/artist/" + quote(artist_id) + "/images",
+            f"{self.endpoint}/artist/{quote(artist_id)}/images",
             params={"limit": limit, "offset": offset},
         )
 
@@ -207,9 +207,9 @@ class NekosAPI:
         params = {"limit": limit, "offset": offset}
 
         if search:
-            params.update({"search": str(search)})
+            params["search"] = str(search)
 
-        response = requests.get(self.endpoint + "/category", params=params)
+        response = requests.get(f"{self.endpoint}/category", params=params)
 
         NekosAPI._check_response_code(response)
 
@@ -222,7 +222,7 @@ class NekosAPI:
         """
         Returns a category by it's ID.
         """
-        response = requests.get(self.endpoint + "/category/" + quote(category_id))
+        response = requests.get(f"{self.endpoint}/category/{quote(category_id)}")
 
         NekosAPI._check_response_code(response)
 
@@ -243,9 +243,9 @@ class NekosAPI:
         params = {"limit": limit, "offset": offset}
 
         if search:
-            params.update({"search": str(search)})
+            params["search"] = str(search)
 
-        response = requests.get(self.endpoint + "/character", params=params)
+        response = requests.get(f"{self.endpoint}/character", params=params)
 
         NekosAPI._check_response_code(response)
 
@@ -258,7 +258,7 @@ class NekosAPI:
         """
         Returns a character by it's ID.
         """
-        response = requests.get(self.endpoint + "/character/" + quote(character_id))
+        response = requests.get(f"{self.endpoint}/character/{quote(character_id)}")
 
         NekosAPI._check_response_code(response)
 

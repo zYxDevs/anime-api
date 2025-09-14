@@ -73,9 +73,6 @@ class NekosMoeAPI:
             self.api_token = self.get_api_token(username, password)
         elif username or password:
             raise ValueError("You must provide both a username and password.")
-        elif username or password:
-            raise ValueError("You must provide a username and password. You provided only one.")
-
         return True
 
     def get_user(self, user_id: str = "@me") -> User:

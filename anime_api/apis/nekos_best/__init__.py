@@ -27,7 +27,7 @@ class NekosBest:
             raise ValueError("Amount must be between 1 and 20")
 
         response = requests.get(
-            self.endpoint + "/" + image_type.value, params={"amount": amount}
+            f"{self.endpoint}/{image_type.value}", params={"amount": amount}
         )
 
         if response.status_code != 200:
@@ -77,7 +77,7 @@ class NekosBest:
         if image_category:
             params["category"] = image_category.value
 
-        response = requests.get(self.endpoint + "/search", params=params)
+        response = requests.get(f"{self.endpoint}/search", params=params)
 
         if response.status_code != 200:
             raise exceptions.ServerError(status_code=response.status_code)

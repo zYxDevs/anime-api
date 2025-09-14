@@ -74,9 +74,7 @@ class Anime:
         """
         Check if the anime is loaded
         """
-        if not self._description:
-            return False
-        return True
+        return bool(self._description)
 
     @property
     def title(self) -> _AnimeTitle:
@@ -150,10 +148,7 @@ class Anime:
             self.load()
 
         if not self._is_people_loaded:
-            people_objects = []
-
-            for person in self._people:
-                people_objects.append(Person(_url=person))
+            people_objects = [Person(_url=person) for person in self._people]
             self._people = people_objects
             self._is_people_loaded = True
 
@@ -166,12 +161,9 @@ class Anime:
         """
         if not self._species and not self.is_loaded:
             self.load()
-        
-        if not self._is_species_loaded:
-            species_objects = []
 
-            for species in self._species:
-                species_objects.append(Species(_url=species))
+        if not self._is_species_loaded:
+            species_objects = [Species(_url=species) for species in self._species]
             self._species = species_objects
             self._is_species_loaded = True
 
@@ -186,10 +178,7 @@ class Anime:
             self.load()
 
         if not self._is_locations_loaded:
-            location_objects = []
-
-            for location in self._locations:
-                location_objects.append(Location(_url=location))
+            location_objects = [Location(_url=location) for location in self._locations]
             self._locations = location_objects
             self._is_locations_loaded = True
 
@@ -204,10 +193,7 @@ class Anime:
             self.load()
 
         if not self._is_vehicles_loaded:
-            vehicle_objects = []
-
-            for vehicle in self._vehicles:
-                vehicle_objects.append(Vehicle(_url=vehicle))
+            vehicle_objects = [Vehicle(_url=vehicle) for vehicle in self._vehicles]
             self._vehicles = vehicle_objects
             self._is_vehicles_loaded = True
 
@@ -248,9 +234,7 @@ class Person:
         """
         Check if the person is loaded
         """
-        if not self._name:
-            return False
-        return True
+        return bool(self._name)
 
     def load(self) -> bool:
         """
@@ -328,10 +312,7 @@ class Person:
             self.load()
 
         if not self._is_animes_loaded:
-            anime_objects = []
-
-            for anime in self._animes:
-                anime_objects.append(Anime(_url=anime))
+            anime_objects = [Anime(_url=anime) for anime in self._animes]
             self._animes = anime_objects
             self._is_animes_loaded = True
 
@@ -385,9 +366,7 @@ class Location:
         """
         Check if the location is loaded
         """
-        if not self._name:
-            return False
-        return True
+        return bool(self._name)
 
     def load(self) -> bool:
         """
@@ -455,11 +434,7 @@ class Location:
             self.load()
 
         if not self._is_residents_loaded:
-            resident_objects = []
-
-            for resident in self._residents:
-                resident_objects.append(Person(_url=resident))
-
+            resident_objects = [Person(_url=resident) for resident in self._residents]
             self._residents = resident_objects
             self._is_residents_loaded = True
 
@@ -474,11 +449,7 @@ class Location:
             self.load()
 
         if not self._is_animes_loaded:
-            anime_objects = []
-
-            for anime in self._animes:
-                anime_objects.append(Anime(_url=anime))
-
+            anime_objects = [Anime(_url=anime) for anime in self._animes]
             self._animes = anime_objects
             self._is_animes_loaded = True
 
@@ -518,9 +489,7 @@ class Species:
         """
         Check if the specie is loaded
         """
-        if not self._name:
-            return False
-        return True
+        return bool(self._name)
 
     def load(self) -> bool:
         """
@@ -588,11 +557,7 @@ class Species:
             self.load()
 
         if not self._is_people_loaded:
-            people_objects = []
-
-            for person in self._people:
-                people_objects.append(Person(_url=person))
-
+            people_objects = [Person(_url=person) for person in self._people]
             self._people = people_objects
             self._is_people_loaded = True
 
@@ -607,11 +572,7 @@ class Species:
             self.load()
 
         if not self._is_animes_loaded:
-            anime_objects = []
-
-            for anime in self._animes:
-                anime_objects.append(Anime(_url=anime))
-
+            anime_objects = [Anime(_url=anime) for anime in self._animes]
             self._animes = anime_objects
             self._is_animes_loaded = True
 
@@ -650,9 +611,7 @@ class Vehicle:
         """
         Check if the vehicle is loaded
         """
-        if not self._name:
-            return False
-        return True
+        return bool(self._name)
 
     def load(self) -> bool:
         """
@@ -734,11 +693,7 @@ class Vehicle:
             self.load()
 
         if not self._is_animes_loaded:
-            anime_objects = []
-
-            for anime in self._animes:
-                anime_objects.append(Anime(_url=anime))
-
+            anime_objects = [Anime(_url=anime) for anime in self._animes]
             self._animes = anime_objects
             self._is_animes_loaded = True
 

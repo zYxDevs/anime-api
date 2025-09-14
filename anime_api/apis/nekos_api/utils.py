@@ -15,7 +15,6 @@ class EscapedQuery:
         """
         Escapes special characters
         """
-        mapping = {}
         special_characters = [
             "%",
             "_",
@@ -31,9 +30,7 @@ class EscapedQuery:
             "]",
         ]
 
-        for character in special_characters:
-            mapping.update({character: f"\\{character}"})
-
+        mapping = {character: f"\\{character}" for character in special_characters}
         table = str.maketrans(mapping)
         return self.query.translate(table)
 
